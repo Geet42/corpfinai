@@ -6,7 +6,7 @@ Investment professionals spend hours manually collecting company data across sca
 
 ## Approach
 
-CorpFinAI is a five-stage pipeline system:
+CorpFinAI is an eight-stage pipeline system:
 
 **1. Multi-source ingestion** pulls financial statements from Yahoo Finance, 10-K filing text from SEC EDGAR, and brand positioning from company websites into typed Pydantic models stored in SQLite.
 
@@ -14,21 +14,27 @@ CorpFinAI is a five-stage pipeline system:
 
 **3. A LangChain ReAct agent** (GPT-4o-mini) orchestrates the analysis through tool-calling. It retrieves data from the database, runs scenario projections by delegating to the deterministic engine, and synthesizes findings. Every Thought/Action/Observation step is captured and returned for observability.
 
-**4. Output generators** produce an interactive React dashboard (Recharts bar charts, line charts, sensitivity heatmaps, collapsible agent trace viewer) and a downloadable PPTX corporate presentation.
+**4. RAG engine** indexes 10-K filing text using ChromaDB vector store and RecursiveCharacterTextSplitter, enabling the agent to query risk factors, strategy, and competitive positioning through semantic search.
 
-**5. Docker + CI** enables one-command startup (`docker compose up`) and automated testing/linting via GitHub Actions.
+**5. Monte Carlo simulation** runs 1000 probabilistic scenarios with randomized growth, margins, and WACC parameters, generating distributions with percentiles and confidence intervals for robust valuation ranges.
+
+**6. Output generators** produce an interactive React dashboard (Recharts visualizations, real-time SSE streaming, agent trace viewer) and downloadable PPTX/PDF corporate presentations.
+
+**7. Quality evaluation engine** runs 15+ automated sanity checks on data completeness, financial ratio bounds, scenario consistency, and cross-validation between DCF and market valuations.
+
+**8. Docker + CI** enables one-command startup (`docker compose up`) and automated testing/linting via GitHub Actions with multi-stage builds.
 
 ## Trade-Offs
 
 - Used **SQLite over Postgres** for zero-config hackathon setup.
 - Used **GPT-4o-mini over GPT-4** for cost and speed; the deterministic engine carries the analytical weight.
 - **Simplified FCF** (EBITDA minus Capex) skips tax and working capital modeling for scope.
-- SEC EDGAR text extraction is **basic** (no NLP section parsing).
+- RAG indexing extracts sections via regex patterns (business, risks, strategy) rather than advanced NLP parsing.
 - System **works without an OpenAI key**: the deterministic model, charts, PPTX, and full dashboard run independently; only the agent reasoning layer requires it.
 
 ## What I'd Do Next
 
-With another week: implement RAG over 10-K filings for deeper qualitative analysis, add LBO and merger model capabilities, generate PDF investment memos, build multi-company comparison mode, deploy to cloud with authentication, and add Monte Carlo simulation for assumption ranges.
+With another week: add LBO and merger model capabilities, build multi-company comparison mode, deploy to cloud with authentication, implement advanced NLP section parsing for 10-K filings, and add options pricing models.
 
 ## AI Tools Used
 
