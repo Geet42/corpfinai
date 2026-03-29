@@ -121,7 +121,7 @@ export default function App() {
       </main>
 
       <footer className="text-center py-6 text-sm text-gray-400 border-t">
-        CorpFinAI | Built for Assiduous Hackathon 2025 | Not Investment Advice
+        CorpFinAI | Built for Assiduous Hackathon 2026 | Not Investment Advice
       </footer>
     </div>
   );
