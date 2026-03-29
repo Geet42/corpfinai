@@ -2,7 +2,7 @@
 
 An agentic corporate finance analysis pipeline that ingests public company data, builds deterministic financial models, runs AI-powered strategic advisory, and generates investor-grade outputs -- all with observable reasoning traces.
 
-Built for the **Assiduous Hackathon 2025** (March 27-29).
+Built for the **Assiduous Hackathon 2026** (March 27-29).
 
 > **Disclaimer:** This is a student hackathon project. All outputs are for educational purposes only and do not constitute investment advice. Projections are estimates based on publicly available data and stated assumptions.
 
@@ -206,4 +206,4 @@ corpfinai/
 
 ## License
 
-MIT License. Built for the Assiduous Hackathon 2025.
+MIT License. Built for the Assiduous Hackathon 2026.
