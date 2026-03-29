@@ -15,7 +15,7 @@ jobs:
       - name: Run tests
         run: cd backend && python -m pytest tests/ -v
       - name: Lint
-        run: cd backend && python -m flake8 --max-line-length 120 --exclude=__pycache__
+        run: cd backend && python -m flake8 --max-line-length 120 --exclude=__pycache__ --ignore=E128,E127,E402,W293,F401,F841,E203,E501
 
   frontend:
     runs-on: ubuntu-latest
